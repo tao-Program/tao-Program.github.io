@@ -65,7 +65,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/24/hello-world/" class="article-date">
-  <time datetime="2019-07-23T23:53:42.576Z" itemprop="datePublished">2019-07-24</time>
+  <time datetime="2019-07-24T00:02:05.144Z" itemprop="datePublished">2019-07-24</time>
 </a>
     
   </div>
@@ -86,27 +86,28 @@
       
         <h2 id="欢迎关注我的：-BiliBili-你的关注将是我更新的动力，"><a href="#欢迎关注我的：-BiliBili-你的关注将是我更新的动力，" class="headerlink" title="欢迎关注我的： BiliBili! 你的关注将是我更新的动力， "></a>欢迎关注我的： <a href="https://space.bilibili.com/52813077" target="_blank" rel="noopener">BiliBili</a>! 你的关注将是我更新的动力， </h2><p>可以通过QQ联系我 QQ: 2331858952 。也可以关注一下我的<a href="https://github.com/search?q=tao-Program&type=Users" target="_blank" rel="noopener">GitHub</a>。</p>
 <h2 id="在Kali-Linux下用scapy进行僵尸端口扫描。"><a href="#在Kali-Linux下用scapy进行僵尸端口扫描。" class="headerlink" title="在Kali Linux下用scapy进行僵尸端口扫描。"></a>在Kali Linux下用scapy进行僵尸端口扫描。</h2><h3 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h3><hr>
-<p>我的机器向僵尸机发送一个SYN,ACK的请求包。因没有经过三次握手所以僵尸机给我回了个RST。我再将自己的IP地址伪造成僵尸机的IP地址向目标机器发了个SYN,随后目标机器向僵尸机会了个响应包。我在向僵尸机发个SYN,ACK僵尸机又回应了一个RST,再次拒绝，但是我们可以通过返回的响应包的IPID得知目标机器的端口是否开启。</p>
+<p>我的机器向僵尸机发送一个SYN,ACK的请求包。因没有经过三次握手所以僵尸机给我回了个RST。我再将自己的IP地址伪造成僵尸机的IP地址向目标机器发了个SYN,随后目标机器向僵尸机回了个响应包SYN-ACK。我再向僵尸机发个SYN,ACK僵尸机又回应了一个RST再次拒绝。但是我可以通过返回的响应包的IPID号得知目标机器的被扫描端口是否开启。</p>
 <hr>
 <h2 id="首先启动scapy"><a href="#首先启动scapy" class="headerlink" title="首先启动scapy"></a>首先启动scapy</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># scapy</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="设置变量"><a href="#设置变量" class="headerlink" title="设置变量"></a>设置变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; ip=IP()</span><br><span class="line">&gt;&gt;&gt; tcp=TCP()</span><br><span class="line">&gt;&gt;&gt; sz=(ip/tcp)</span><br><span class="line">&gt;&gt;&gt; sh=(ip/tcp)</span><br></pre></td></tr></table></figure>
 
-<p>sz代表向僵尸机发送数据包，sh向目标机器。</p>
+<p>sz代表向僵尸机发送请求包，sh向目标机器发送请求包。</p>
 <h3 id="第一次向僵尸机发送。"><a href="#第一次向僵尸机发送。" class="headerlink" title="第一次向僵尸机发送。"></a>第一次向僵尸机发送。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sz[IP].dst=<span class="string">"192.168.1.8"</span></span><br><span class="line">&gt;&gt;&gt; sz[TCP].flags=<span class="string">"SA"</span></span><br><span class="line">&gt;&gt;&gt; sz[TCP].dport=80</span><br><span class="line">&gt;&gt;&gt; answer1=sr1(sz)</span><br></pre></td></tr></table></figure>
 
 <p>[192….]输入你的僵尸机IP,端口自定义。</p>
-<h3 id="伪造地址并且向目标机器发送请求。"><a href="#伪造地址并且向目标机器发送请求。" class="headerlink" title="伪造地址并且向目标机器发送请求。"></a>伪造地址并且向目标机器发送请求。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sh[IP].src=<span class="string">"192.168.1.8"</span></span><br><span class="line">&gt;&gt;&gt; sh[IP].dst=<span class="string">"192.168.1.4"</span></span><br><span class="line">&gt;&gt;&gt; sh[TCP].flags=<span class="string">"S"</span></span><br><span class="line">&gt;&gt;&gt; sh[TCP].dport=80</span><br><span class="line">&gt;&gt;&gt; unanswer=sr1(sh,timeout=1)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="注意：僵尸机应选择Windows-XP-Windows-2003"><a href="#注意：僵尸机应选择Windows-XP-Windows-2003" class="headerlink" title="注意：僵尸机应选择Windows XP,Windows 2003."></a>注意：僵尸机应选择Windows XP,Windows 2003.</h2><h3 id="伪造地址并且向目标机器发送请求。"><a href="#伪造地址并且向目标机器发送请求。" class="headerlink" title="伪造地址并且向目标机器发送请求。"></a>伪造地址并且向目标机器发送请求。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sh[IP].src=<span class="string">"192.168.1.8"</span></span><br><span class="line">&gt;&gt;&gt; sh[IP].dst=<span class="string">"192.168.1.4"</span></span><br><span class="line">&gt;&gt;&gt; sh[TCP].flags=<span class="string">"S"</span></span><br><span class="line">&gt;&gt;&gt; sh[TCP].dport=80</span><br><span class="line">&gt;&gt;&gt; unanswer=sr1(sh,timeout=1)</span><br></pre></td></tr></table></figure>
 
-<p>src处输入你的僵尸机的IP地址。</p>
+<p>src输入你的僵尸机的IP地址,进行IP地址伪造。</p>
 <h3 id="再次向僵尸机发送请求包。"><a href="#再次向僵尸机发送请求包。" class="headerlink" title="再次向僵尸机发送请求包。"></a>再次向僵尸机发送请求包。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; answer2=sr1(sz)</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="对比answer1和answer2的id如果两个ID差为2那么端口开放，如果为1那么不开放。"><a href="#对比answer1和answer2的id如果两个ID差为2那么端口开放，如果为1那么不开放。" class="headerlink" title="对比answer1和answer2的id如果两个ID差为2那么端口开放，如果为1那么不开放。"></a>对比answer1和answer2的id如果两个ID差为2那么端口开放，如果为1那么不开放。</h2>
+<h2 id="对比answer1和answer2的id，如果两个id差为2那么端口开放，如果为1那么不开放。"><a href="#对比answer1和answer2的id，如果两个id差为2那么端口开放，如果为1那么不开放。" class="headerlink" title="对比answer1和answer2的id，如果两个id差为2那么端口开放，如果为1那么不开放。"></a>对比answer1和answer2的id，如果两个id差为2那么端口开放，如果为1那么不开放。</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjygh6odt0000ykcpfny9g64j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjyghhdsv00003ccpn31n3v8e" class="article-share-link">Share</a>
       
       
     </footer>
