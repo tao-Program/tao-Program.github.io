@@ -87,13 +87,14 @@
         <h3 id="对比id号如果前一个id号减去后一个id号的差为2-证明端口处于开放状态。"><a href="#对比id号如果前一个id号减去后一个id号的差为2-证明端口处于开放状态。" class="headerlink" title="对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。"></a>对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。</h3><hr>
 <h2 id="具体代码如下："><a href="#具体代码如下：" class="headerlink" title="具体代码如下："></a>具体代码如下：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -ne 1 ];<span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"使用zombies.sh的方法."</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"实例：./zombies.sh  [target ip]"</span></span><br><span class="line">     <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">ip_add=<span class="variable">$1</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">""</span> &gt;/root/projects/shp/program/SYN-scapy/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"az1o=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;[目录]/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"at=sr1(IP(src='[你的僵尸机]',dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport=1),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"az1t=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/p[目录]</span><br><span class="line">	    <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$add</span><span class="string">"o=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	    <span class="built_in">echo</span> <span class="string">"at"</span><span class="variable">$add</span><span class="string">"=sr1(IP(src='[你的僵尸机]',dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport="</span><span class="variable">$add</span><span class="string">"),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$add</span><span class="string">"t=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">   <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> $(seq 1 150);<span class="keyword">do</span></span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$num</span><span class="string">"o"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$num</span><span class="string">"t"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"at"</span><span class="variable">$num</span><span class="string">"[TCP].sport"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">scapy &lt; [目录]/parameter &gt;[目录]/result</span><br><span class="line">cat result | grep <span class="string">"&gt;&gt;&gt;"</span> | cut -d <span class="string">" "</span> -f 2,8 | cut -d <span class="string">"="</span> -f 2 | cut -d <span class="string">" "</span> -f 1 | grep <span class="string">'[0-9]'</span> &gt;[目录]/num.txt</span><br><span class="line">cat [目录]/num.txt</span><br></pre></td></tr></table></figure>
 
-<p>###务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。</p>
+<h3 id="务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。"><a href="#务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。" class="headerlink" title="务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。"></a>务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。</h3><hr>
+<p>加可执行权限，就可以用。</p>
 <hr>
-<h2 id="如有疑问，请点击留言。留言"><a href="#如有疑问，请点击留言。留言" class="headerlink" title="如有疑问，请点击留言。留言"></a>如有疑问，请点击留言。<a href="http://hack.chat/?tao-program-github" target="_blank" rel="noopener">留言</a></h2>
+<h2 id="如有疑问，请点击留言。留言-如果tao0program不在线将无法看到留言。"><a href="#如有疑问，请点击留言。留言-如果tao0program不在线将无法看到留言。" class="headerlink" title="如有疑问，请点击留言。留言 如果tao0program不在线将无法看到留言。"></a>如有疑问，请点击留言。<a href="http://hack.chat/?tao-program-github" target="_blank" rel="noopener">留言</a> 如果tao0program不在线将无法看到留言。</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/25/僵尸扫描2/" data-id="cjyi3ajq500020ocpwepl6ogb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/25/僵尸扫描2/" data-id="cjyi3ma33000291cpp2pw9bb0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -134,7 +135,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/tcp-scapy/" data-id="cjyi3ajpt00010ocp6neoommq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/tcp-scapy/" data-id="cjyi3ma2r000191cp4ax2rje5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -189,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjyi3ajp000000ocpraj8bthl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/hello-world/" data-id="cjyi3ma1z000091cp3kqzn86p" class="article-share-link">Share</a>
       
       
     </footer>
