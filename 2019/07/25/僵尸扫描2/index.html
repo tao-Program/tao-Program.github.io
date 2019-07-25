@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>在Kali Linux下用scapy进行端口僵尸扫描（2） | tao-Programの渗透测试</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。 具体代码如下：123456789101112131415161718192021222324252627# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;使用zombies.sh的方法.&quot;	echo &quot;实例：./zombies.sh  [target ip]&quot;     exitfiip_ad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Kali Linux下用scapy进行端口僵尸扫描（2）">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/僵尸扫描2/index.html">
+<meta property="og:site_name" content="tao-Programの渗透测试">
+<meta property="og:description" content="对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。 具体代码如下：123456789101112131415161718192021222324252627# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;使用zombies.sh的方法.&quot;	echo &quot;实例：./zombies.sh  [target ip]&quot;     exitfiip_ad">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-25T03:00:22.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Kali Linux下用scapy进行端口僵尸扫描（2）">
+<meta name="twitter:description" content="对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。 具体代码如下：123456789101112131415161718192021222324252627# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;使用zombies.sh的方法.&quot;	echo &quot;实例：./zombies.sh  [target ip]&quot;     exitfiip_ad">
+  
+    <link rel="alternate" href="/atom.xml" title="tao-Programの渗透测试" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">tao-Programの渗透测试</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-僵尸扫描2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/25/僵尸扫描2/" class="article-date">
+  <time datetime="2019-07-25T02:40:51.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在Kali Linux下用scapy进行端口僵尸扫描（2）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="对比id号如果前一个id号减去后一个id号的差为2-证明端口处于开放状态。"><a href="#对比id号如果前一个id号减去后一个id号的差为2-证明端口处于开放状态。" class="headerlink" title="对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。"></a>对比id号如果前一个id号减去后一个id号的差为2,证明端口处于开放状态。</h3><hr>
+<h2 id="具体代码如下："><a href="#具体代码如下：" class="headerlink" title="具体代码如下："></a>具体代码如下：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -ne 1 ];<span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"使用zombies.sh的方法."</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"实例：./zombies.sh  [target ip]"</span></span><br><span class="line">     <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">ip_add=<span class="variable">$1</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="string">""</span> &gt;/root/projects/shp/program/SYN-scapy/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"az1o=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;[目录]/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"at=sr1(IP(src='[你的僵尸机]',dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport=1),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">       <span class="built_in">echo</span> <span class="string">"az1t=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/p[目录]</span><br><span class="line">	    <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$add</span><span class="string">"o=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	    <span class="built_in">echo</span> <span class="string">"at"</span><span class="variable">$add</span><span class="string">"=sr1(IP(src='[你的僵尸机]',dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport="</span><span class="variable">$add</span><span class="string">"),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$add</span><span class="string">"t=sr1(IP(dst='[你的僵尸机]')/TCP(flags='SA',dport=445),timeout=1)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">   <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> $(seq 1 150);<span class="keyword">do</span></span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$num</span><span class="string">"o"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"az"</span><span class="variable">$num</span><span class="string">"t"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	   <span class="built_in">echo</span> <span class="string">"at"</span><span class="variable">$num</span><span class="string">"[TCP].sport"</span> &gt;&gt;[目录]/parameter</span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">scapy &lt; [目录]/parameter &gt;[目录]/result</span><br><span class="line">cat result | grep <span class="string">"&gt;&gt;&gt;"</span> | cut -d <span class="string">" "</span> -f 2,8 | cut -d <span class="string">"="</span> -f 2 | cut -d <span class="string">" "</span> -f 1 | grep <span class="string">'[0-9]'</span> &gt;[目录]/num.txt</span><br><span class="line">cat [目录]/num.txt</span><br></pre></td></tr></table></figure>
+
+<p>###务必将目录改为自己的目录，僵尸机的IP输入自己的僵尸机的IP。</p>
+<hr>
+<h2 id="如有疑问，请点击留言。留言"><a href="#如有疑问，请点击留言。留言" class="headerlink" title="如有疑问，请点击留言。留言"></a>如有疑问，请点击留言。<a href="http://hack.chat/?tao-program-github" target="_blank" rel="noopener">留言</a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/25/僵尸扫描2/" data-id="cjyi3ajq500020ocpwepl6ogb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/24/tcp-scapy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">自动化的端口扫描bash脚本</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/25/僵尸扫描2/">在Kali Linux下用scapy进行端口僵尸扫描（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/24/tcp-scapy/">自动化的端口扫描bash脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/24/hello-world/">欢迎来到tao-Program的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 tao-Program<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
