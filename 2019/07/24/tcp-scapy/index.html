@@ -1,163 +1,194 @@
 <!DOCTYPE html>
-<html lang=>
-  <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content>
-  <meta name="keywords" content>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
   
-    <link rel="icon" href>
-  
-    
-  <title>自动化的端口扫描bash脚本 | tao-Programの渗透测试</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
+  
+  <title>自动化的端口扫描bash脚本 | tao-Programの渗透测试</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。源码：123456789101112131415161718# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;Warning: 使用tcp-scapy.sh ip&quot;	echo &quot;[*]      实例：./tcp-scapy.sh 192.168.1.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化的端口扫描bash脚本">
+<meta property="og:url" content="http://yoursite.com/2019/07/24/tcp-scapy/index.html">
+<meta property="og:site_name" content="tao-Programの渗透测试">
+<meta property="og:description" content="向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。源码：123456789101112131415161718# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;Warning: 使用tcp-scapy.sh ip&quot;	echo &quot;[*]      实例：./tcp-scapy.sh 192.168.1.1">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-25T02:07:47.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自动化的端口扫描bash脚本">
+<meta name="twitter:description" content="向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。源码：123456789101112131415161718# !/bin/bashif [ &quot;$#&quot; -ne 1 ];then	echo &quot;Warning: 使用tcp-scapy.sh ip&quot;	echo &quot;[*]      实例：./tcp-scapy.sh 192.168.1.1">
+  
+    <link rel="alternate" href="/atom.xml" title="tao-Programの渗透测试" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
 <body>
-  <header>
-  <div class="header-container">
-    <a class='logo' href="/">
-      <span>tao-Programの渗透测试</span>
-    </a>
-    <ul class="right-header">
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">tao-Programの渗透测试</a>
+      </h1>
       
-        <li class="nav-item">
-          
-            <a href="/" class="item-link">首页</a>
-          
-        </li>
-      
-        <li class="nav-item">
-          
-            <a href="/about" class="item-link">关于</a>
-          
-        </li>
-      
-        <li class="nav-item">
-          
-            <a href="/archives" class="item-link">归档</a>
-          
-        </li>
-      
-        <li class="nav-item">
-          
-            <a href="/tags" class="item-link">标签</a>
-          
-        </li>
-      
-    </ul>
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
   </div>
 </header>
+      <div class="outer">
+        <section id="main"><article id="post-tcp-scapy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/24/tcp-scapy/" class="article-date">
+  <time datetime="2019-07-24T01:36:11.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      自动化的端口扫描bash脚本
+    </h1>
+  
 
-  <main id='post'>
-  <div class="content">
-    <article>
-        <section class="content markdown-body">
-          <h1>自动化的端口扫描bash脚本</h1>
-          <div class='post-meta'>
-            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2019/07/24</time>
-            
-            
-          </div>
-          <hr>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
 <h2 id="向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN-ACK响应包。证明我们扫描的这个端口已经开启了。"><a href="#向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN-ACK响应包。证明我们扫描的这个端口已经开启了。" class="headerlink" title="向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。"></a>向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。</h2><h3 id="源码："><a href="#源码：" class="headerlink" title="源码："></a>源码：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$#</span>"</span> -ne 1 ];<span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Warning: 使用tcp-scapy.sh ip"</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"[*]      实例：./tcp-scapy.sh 192.168.1.1"</span></span><br><span class="line">     <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">" "</span> &gt;[目录]/parmeter</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"sr1(IP(dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport=1),timeout=1,verbose=0)"</span> &gt;[目录]/parameter</span><br><span class="line"></span><br><span class="line">ip_add=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">for</span> addr <span class="keyword">in</span> $(seq 1 1000);<span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"sr1(IP(dst='"</span><span class="variable">$ip_add</span><span class="string">"')/TCP(flags='S',dport=<span class="variable">$addr</span>),timeout=1,verbose=0)"</span> &gt;&gt;[目录]/parameter</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">scapy &lt; [目录]/parameter &gt;[目录]/result.txt</span><br><span class="line">cat [目录]/result.txt | grep TCP | cut -d <span class="string">"="</span> -f 15,21 | grep SA | cut -d <span class="string">"="</span> -f 1 | cut -d <span class="string">" "</span> -f 1 <span class="comment">#| head -n 1</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="说明：直接加可执行权限就可以用。"><a href="#说明：直接加可执行权限就可以用。" class="headerlink" title="说明：直接加可执行权限就可以用。"></a>说明：直接加可执行权限就可以用。</h3><hr>
 <h3 id="将目录改成自己的目录（建议一定要改成自己的目录）"><a href="#将目录改成自己的目录（建议一定要改成自己的目录）" class="headerlink" title="将目录改成自己的目录（建议一定要改成自己的目录）"></a>将目录改成自己的目录（建议一定要改成自己的目录）</h3><hr>
 <h2 id="tcp-scapy-sh-ip-—–-gt-目标IP"><a href="#tcp-scapy-sh-ip-—–-gt-目标IP" class="headerlink" title="./tcp-scapy.sh   [ip]—–&gt;目标IP"></a>./tcp-scapy.sh   [ip]—–&gt;目标IP</h2>
-        </section>
-    </article>
-    
-        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/24/tcp-scapy/" data-id="cjyi21d0b000166cp3v7h66xv" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
-  <aside>
+  
     
-    <div class="toc-container">
-        <h1>目录</h1>
-        <div class="content">
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN-ACK响应包。证明我们扫描的这个端口已经开启了。"><span class="toc-number">1.</span> <span class="toc-text">向目标机器的某个端口发送一个SYN的请求包，如果收到一份SYN,ACK响应包。证明我们扫描的这个端口已经开启了。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#源码："><span class="toc-number">1.1.</span> <span class="toc-text">源码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明：直接加可执行权限就可以用。"><span class="toc-number">1.2.</span> <span class="toc-text">说明：直接加可执行权限就可以用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将目录改成自己的目录（建议一定要改成自己的目录）"><span class="toc-number">1.3.</span> <span class="toc-text">将目录改成自己的目录（建议一定要改成自己的目录）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tcp-scapy-sh-ip-—–-gt-目标IP"><span class="toc-number">2.</span> <span class="toc-text">./tcp-scapy.sh   [ip]—–&gt;目标IP</span></a></li></ol>
-        </div>
-    </div>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">欢迎来到tao-Program的博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
     
-  </aside>
-</main>
 
+  
+    
 
-
-  <footer>
-  <div class="copyright">
-    <div>
-      &copy; 2019 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
-    <div>
-      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/24/tcp-scapy/">自动化的端口扫描bash脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/24/hello-world/">欢迎来到tao-Program的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 tao-Program<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
-
-
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="/lib/in-view.min.js"></script>
-<script src="/lib/lodash.min.js"></script>
-<script>
-  var isDown = true
-  var oldY = 0
-  inView.offset(50)
-
-  document.body.addEventListener('touchstart', function(){});
+    </div>
+    <nav id="mobile-nav">
   
-  window.addEventListener('scroll', _.throttle(e => {
-    var currentY = window.scrollY
-    if((oldY - currentY) < 0) {
-      isDown = true
-    } else {
-      isDown = false
-    }
-    oldY = currentY
-  }, 250))
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-  $("article img").each(function() {
-      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
-      $(this).wrapAll(strA);
-  });
-
-  $('.toc-link').each(function() {
-      var href = $(this).attr("href");
-      
-      inView(href).on('exit', () => {
-        if (isDown) {
-          handleActive(href)
-        }
-      })
-
-      inView(href).on('enter', () => {
-        if (!isDown) {
-          handleActive(href)
-        }
-      })
-
-      this.onclick = function(e) {
-        var pos = $(href).offset().top - 10;
-        $("html,body").animate({scrollTop: pos}, 300);
-        setTimeout(() => {
-          handleActive(href)
-        }, 350)
-        return false
-      }
-  })
-
-  function handleActive(href) {
-    document.querySelectorAll('.toc-link').forEach(elm => {
-      elm.classList.remove('active')
-    })
-    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
-  }
-</script>
-<script src="/lib/jquery.fancybox.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
 </body>
 </html>
