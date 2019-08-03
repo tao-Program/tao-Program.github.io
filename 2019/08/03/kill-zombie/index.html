@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>杀死僵尸进程 | tao-Programの渗透测试</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。 原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程12root@system~# ps -e -o ppid,stat | grep Zroot@system~# kill PID  希望会对大家有所帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杀死僵尸进程">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/kill-zombie/index.html">
+<meta property="og:site_name" content="tao-Programの渗透测试">
+<meta property="og:description" content="今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。 原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程12root@system~# ps -e -o ppid,stat | grep Zroot@system~# kill PID  希望会对大家有所帮助。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-03T08:24:57.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杀死僵尸进程">
+<meta name="twitter:description" content="今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。 原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程12root@system~# ps -e -o ppid,stat | grep Zroot@system~# kill PID  希望会对大家有所帮助。">
+  
+    <link rel="alternate" href="/atom.xml" title="tao-Programの渗透测试" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">tao-Programの渗透测试</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-kill-zombie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/03/kill-zombie/" class="article-date">
+  <time datetime="2019-08-03T08:12:23.000Z" itemprop="datePublished">2019-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      杀死僵尸进程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。"><a href="#今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。" class="headerlink" title="今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。"></a>今天给大家分享一个比较有用的Linux命令，杀死僵尸进程。</h3><hr>
+<h2 id="原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程"><a href="#原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程" class="headerlink" title="原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程"></a>原因是前几天电脑一直很卡，但是一直没有找到问题出在了哪里，直到今天才知道原来有一个僵尸进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@system~<span class="comment"># ps -e -o ppid,stat | grep Z</span></span><br><span class="line">root@system~<span class="comment"># kill PID</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="希望会对大家有所帮助。"><a href="#希望会对大家有所帮助。" class="headerlink" title="希望会对大家有所帮助。"></a>希望会对大家有所帮助。</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/03/kill-zombie/" data-id="cjyv9vcpk0002fhcpowhhxtt4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">欢迎来到tao-Program的博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/03/kill-zombie/">杀死僵尸进程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/27/hello-world/">欢迎来到tao-Program的博客</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/QQnumber/">C语言：全数字密码字典生成程序</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/25/僵尸扫描2/">在Kali Linux下用scapy进行端口僵尸扫描（2）</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/24/tcp-scapy/">自动化的端口扫描bash脚本</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 tao-Program<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
